@@ -8,13 +8,19 @@ type TTicketsActions =
 
 export interface ITicketsAction {
     type: TTicketsActions,
-    payload: Partial<IAllState['Tickets']>,
-    _reponse?: any
+    payload: Partial<IAllState['Tickets']>
 }
 
 export const initialTicketsState: IAllState['Tickets'] = {
     listaTickets: [],
-    precioPorHora: 10
+    precioPorFraccion: 6,
+    folioTicket: 0,
+    newItem: {
+        id: 0,
+        fechaEntrada: new Date(),
+        fechaSalida: new Date(),
+        totalPagar: 0
+    }
 };
 
 
@@ -22,7 +28,11 @@ export const TicketsReducer = (state = initialTicketsState, action: ITicketsActi
     const { type, payload } = action;
     switch (type) {
         case 'EntradaTicket':
-            return { ...state, ...payload }
+            if (payload.newItem) {
+                return { ...state, ...payload, listaTickets: [...state.listaTickets, payload.newItem] }
+            } else {
+                return { ...state, ...payload }
+            }
         case 'SalidaTicket':
         default:
             return state;

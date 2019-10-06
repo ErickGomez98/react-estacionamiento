@@ -14,6 +14,8 @@ export interface IAllState {
     },
     Tickets: {
         listaTickets: Ticket[],
-        precioPorHora: number
+        precioPorFraccion: number,
+        folioTicket: number,
+        newItem: Ticket
     }
 }

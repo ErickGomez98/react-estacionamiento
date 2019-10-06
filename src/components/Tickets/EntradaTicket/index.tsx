@@ -11,6 +11,10 @@ import parkingLotImg from '../../../assets/img/parking_lot.jpg';
 import Collapse from '@material-ui/core/Collapse';
 import { Grid } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { useSelector, useDispatch } from 'react-redux';
+import { IAllState } from '../../../Util/Types/Types-Interfaces';
+import { Dispatch } from 'redux';
+import { ITicketsAction } from '../../../Redux/Reducers/Tickets';
 
 interface Props {
 
@@ -28,6 +32,9 @@ const useStyles = makeStyles({
 const EntradaTicket: React.FC<Props> = () => {
     const classes = useStyles();
     const [generatedTicket, setGeneratedTicket] = useState<boolean>(false);
+    const IdTicket = useSelector<IAllState, IAllState['Tickets']['folioTicket']>((state) => state.Tickets.folioTicket);
+    const dispatchTickets = useDispatch<Dispatch<ITicketsAction>>();
+
     const [tmpTimeout, setTmpTimeout] = useState<any>();
     useEffect(() => {
         if (generatedTicket) {
@@ -41,6 +48,22 @@ const EntradaTicket: React.FC<Props> = () => {
             setTmpTimeout(tmp);
         }
     }, [generatedTicket]);
+
+
+    const generarEntrada = () => {
+        const newFolio = IdTicket + 1;
+        dispatchTickets({
+            type: 'EntradaTicket', payload: {
+                folioTicket: newFolio, newItem: {
+                    id: newFolio,
+                    fechaEntrada: new Date(),
+                    fechaSalida: new Date(),
+                    totalPagar: 0,
+                }
+            }
+        });
+        setGeneratedTicket(true);
+    }
 
 
     return (
@@ -65,7 +88,7 @@ const EntradaTicket: React.FC<Props> = () => {
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="large" color="primary" variant="contained" fullWidth={true} onClick={() => { setGeneratedTicket(true); }}>
+                                <Button size="large" color="primary" variant="contained" fullWidth={true} onClick={() => { generarEntrada() }}>
                                     Generar Ticket
                             </Button>
                             </CardActions>
@@ -87,7 +110,7 @@ const EntradaTicket: React.FC<Props> = () => {
                                         <Grid item xs={12} style={{ textAlign: 'center', fontSize: '150px' }}>
                                             <CheckCircleIcon htmlColor='green' fontSize='inherit' />
                                             <Typography gutterBottom variant="h2" component="h2">
-                                                FOLIO 2
+                                                FOLIO {IdTicket}
                                             </Typography>
                                         </Grid>
                                     </Grid>
