@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IAllState } from '../Util/Types/Types-Interfaces';
 import { IMonedasAction } from '../Redux/Reducers/Monedas';
 import { Dispatch } from 'redux';
+import RegistroTickets from '../components/Tickets/RegistroTickets';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -29,6 +30,7 @@ const AdminPage: React.FC<Props> = () => {
     const classes = useStyles();
     const Monedas = useSelector<IAllState, IAllState['Monedas']>((state) => state.Monedas);
     const dispatchMonedas = useDispatch<Dispatch<IMonedasAction>>();
+    const ListaTickets = useSelector<IAllState, IAllState['Tickets']['listaTickets']>((state) => state.Tickets.listaTickets);
 
     return (
         <Grid container spacing={3}>
@@ -63,6 +65,13 @@ const AdminPage: React.FC<Props> = () => {
                     <Typography variant="h5" component="h3">
                         Registro de Tickets
                     </Typography>
+                    {ListaTickets.length ?
+                        <RegistroTickets />
+                        :
+                        <Typography variant="h6" color='error'>
+                            No hay ningún ticket registrado
+                        </Typography>
+                    }
                 </Paper>
             </Grid>
         </Grid>

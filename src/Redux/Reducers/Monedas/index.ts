@@ -1,18 +1,16 @@
 
 import { IAllState } from '../../../Util/Types/Types-Interfaces';
 
-type TMainActions =
-    'CambiarMonedasActivas' |
-    'Action';
+type TMonedasActions = 'CambiarMonedasActivas';
 
 
 export interface IMonedasAction {
-    type: TMainActions,
+    type: TMonedasActions,
     payload: Partial<IAllState['Monedas']>,
     _reponse?: any
 }
 
-export const initialMainState: IAllState['Monedas'] = {
+export const initialMonedasState: IAllState['Monedas'] = {
     moneda2: true,
     moneda5: true,
     moneda10: true,
@@ -20,12 +18,11 @@ export const initialMainState: IAllState['Monedas'] = {
 };
 
 
-export const MainReducer = (state = initialMainState, action: IMonedasAction) => {
-    const { type, payload, _reponse = {} } = action;
+export const MonedasReducer = (state = initialMonedasState, action: IMonedasAction) => {
+    const { type, payload } = action;
     switch (type) {
         case 'CambiarMonedasActivas':
             return { ...state, ...payload }
-        case 'Action':
         default:
             return state;
     }
