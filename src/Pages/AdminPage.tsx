@@ -31,7 +31,6 @@ const AdminPage: React.FC<Props> = () => {
     const Monedas = useSelector<IAllState, IAllState['Monedas']>((state) => state.Monedas);
     const dispatchMonedas = useDispatch<Dispatch<IMonedasAction>>();
     const ListaTickets = useSelector<IAllState, IAllState['Tickets']['listaTickets']>((state) => state.Tickets.listaTickets);
-
     return (
         <Grid container spacing={3}>
             <Grid item sm={6} xs={12}>
@@ -66,7 +65,7 @@ const AdminPage: React.FC<Props> = () => {
                         Registro de Tickets
                     </Typography>
                     {ListaTickets.length ?
-                        <RegistroTickets />
+                        <RegistroTickets registros={ListaTickets} />
                         :
                         <Typography variant="h6" color='error'>
                             No hay ningún ticket registrado
