@@ -1,5 +1,8 @@
 export interface IAllState {
-    Main: {
-        main: string
+    Monedas: {
+        moneda2: boolean,
+        moneda5: boolean,
+        moneda10: boolean,
+        moneda20: boolean,
     }
 }

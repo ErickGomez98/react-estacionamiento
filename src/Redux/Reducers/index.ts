@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { MainReducer } from './Main';
+import { MainReducer as MonedasReducer } from './Monedas';
 
 export const Reducers = {
-    Main: MainReducer,
+    Monedas: MonedasReducer,
 };
 
 export default combineReducers(Reducers);
