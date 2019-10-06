@@ -13,10 +13,10 @@ export interface IMonedasAction {
 }
 
 export const initialMainState: IAllState['Monedas'] = {
-    moneda2: false,
-    moneda5: false,
-    moneda10: false,
-    moneda20: false,
+    moneda2: true,
+    moneda5: true,
+    moneda10: true,
+    moneda20: true,
 };
 
 

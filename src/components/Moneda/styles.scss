@@ -1,0 +1,25 @@
+$monedaBorderColor: #B76A04;
+$monedaInnerColor: #F1B834;
+
+.Moneda {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border: 5px solid $monedaBorderColor;
+    border-radius: 50%;
+    vertical-align: middle;
+    transition: all .3s;
+    line-height: 40px;
+    font-weight: 700;
+    background: $monedaInnerColor;
+    cursor: pointer;
+    opacity: 0.2;
+
+    &.Active {
+        opacity: 1;
+    }
+
+    &:hover {
+        box-shadow: 2px 2px 2px 2px #ADADAD;
+    }
+}

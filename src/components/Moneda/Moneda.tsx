@@ -9,7 +9,7 @@ interface Props {
 
 const Moneda: React.FC<Props> = (props) => {
     return (
-        <div onClick={props.clickEv} className={'moneda' + (props.active ? ' active' : '')}>
+        <div onClick={props.clickEv} className={'Moneda' + (props.active ? ' Active' : '')}>
             {props.denominacion}
         </div>
     );

@@ -3,7 +3,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Moneda from '../components/Moneda';
+import Moneda from '../components/Moneda/Moneda';
 import { useSelector, useDispatch } from 'react-redux';
 import { IAllState } from '../Util/Types/Types-Interfaces';
 import { IMonedasAction } from '../Redux/Reducers/Monedas';
@@ -38,7 +38,7 @@ const AdminPage: React.FC<Props> = () => {
                     <Typography variant="h5" component="h3">
                         Catálogo de Monedas.
                     </Typography>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} style={{ marginTop: '10px' }}>
                         <Grid item sm={3} xs={6}>
                             <Moneda denominacion={2} active={Monedas.moneda2} clickEv={() => { dispatchMonedas({ type: 'CambiarMonedasActivas', payload: { moneda2: !Monedas.moneda2 } }) }} />
                         </Grid>
