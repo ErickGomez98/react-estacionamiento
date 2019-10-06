@@ -1,11 +1,14 @@
 import React from 'react';
+import EntradaTicket from '../components/Tickets/EntradaTicket';
 
 interface Props {
 
 }
 
 const EntradaPage: React.FC<Props> = () => {
-    return <p>Entrada Page</p>
+    return (
+        <EntradaTicket />
+    )
 };
 
 export default EntradaPage;
