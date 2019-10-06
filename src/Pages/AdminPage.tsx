@@ -30,7 +30,6 @@ const AdminPage: React.FC<Props> = () => {
     const Monedas = useSelector<IAllState, IAllState['Monedas']>((state) => state.Monedas);
     const dispatchMonedas = useDispatch<Dispatch<IMonedasAction>>();
 
-    console.log(Monedas)
     return (
         <Grid container spacing={3}>
             <Grid item sm={6} xs={12}>
@@ -38,6 +37,11 @@ const AdminPage: React.FC<Props> = () => {
                     <Typography variant="h5" component="h3">
                         Catálogo de Monedas.
                     </Typography>
+
+                    <Typography variant="caption" color='primary'>
+                        *Da click en las monedas para activarlas o desactivarlas.
+                    </Typography>
+
                     <Grid container spacing={3} style={{ marginTop: '10px' }}>
                         <Grid item sm={3} xs={6}>
                             <Moneda denominacion={2} active={Monedas.moneda2} clickEv={() => { dispatchMonedas({ type: 'CambiarMonedasActivas', payload: { moneda2: !Monedas.moneda2 } }) }} />
