@@ -46,6 +46,7 @@ const SalidaTicket: React.FC<Props> = () => {
     const [notFound, setNotFound] = useState<boolean>(false);
     const [ticketFound, setTicketFound] = useState<ITicket>();
     const [totalPagar, setTotalPagar] = useState<number>(0);
+    const [cambioMonedas, setCambioMonedas] = useState<any>(0);
     const [totalDepositado, setTotalDepositado] = useState<number>(0);
     const listaTickets = useSelector<IAllState, IAllState['Tickets']['listaTickets']>((state) => state.Tickets.listaTickets);
     const precioPorFraccion = useSelector<IAllState, IAllState['Tickets']['precioPorFraccion']>((state) => state.Tickets.precioPorFraccion);
@@ -124,6 +125,35 @@ const SalidaTicket: React.FC<Props> = () => {
                 }, 10000);
                 setTmpTimeout(tmp);
 
+                // Calcular el cambio
+                let tmpCreditos = 0;
+                const tmpCambio: any = {};
+                const monedasActivas: any = [];
+                Object.entries(Monedas)
+                    .map(([key, value]) => ({ key, value })).map((item) => {
+                        if (item.value) {
+                            monedasActivas.push(+item.key.replace('moneda', ''));
+                        }
+                    })
+
+                monedasActivas.push(1);
+
+                // Ordenar mayor a menor
+                //@ts-ignore
+                monedasActivas.sort((a, b) => b - a);
+
+                while (tmpCreditos !== Math.abs(totalPagar)) {
+                    for (let i = 0; i < monedasActivas.length; i++) {
+                        if ((tmpCreditos + monedasActivas[i]) <= Math.abs(totalPagar)) {
+                            tmpCreditos += monedasActivas[i];
+                            tmpCambio[monedasActivas[i]] = !(tmpCambio[monedasActivas[i]]) ? 1 : tmpCambio[monedasActivas[i]] + 1;
+                            break;
+                        }
+
+                    }
+                }
+
+                setCambioMonedas(tmpCambio);
             }
         }
     }, [totalDepositado])
@@ -260,6 +290,10 @@ const SalidaTicket: React.FC<Props> = () => {
                                 <Typography gutterBottom variant="h5" component="h2">
                                     Cambio: $ {Math.abs(totalPagar)}
                                 </Typography>
+
+                                {Object.entries(cambioMonedas).map(([key, value]) => ({ key, value })).map((item) => {
+                                    return <div key={item.key}> Moneda: {item.key} | Cantidad: {item.value}</div>
+                                })}
 
                             </CardContent>
                             <CardActions>
