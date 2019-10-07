@@ -78,15 +78,15 @@ const EntradaTicket: React.FC<Props> = () => {
                                     image={parkingLotImg}
                                     title="Estacionamiento"
                                 />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        Estacionamiento
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        La tarifa del estacionamiento es de <Typography variant="body1" style={{ fontWeight: 600 }} color="textPrimary" component="strong" >$6.00 pesos</Typography> por fracciones de <Typography variant="body1" style={{ fontWeight: 600 }} color="textPrimary" component="strong" >15 minutos</Typography>
-                                    </Typography>
-                                </CardContent>
                             </CardActionArea>
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                    Estacionamiento
+                                    </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                                    La tarifa del estacionamiento es de <Typography variant="body1" style={{ fontWeight: 600 }} color="textPrimary" component="strong" >$6.00 pesos</Typography> por fracciones de <Typography variant="body1" style={{ fontWeight: 600 }} color="textPrimary" component="strong" >15 minutos</Typography>
+                                </Typography>
+                            </CardContent>
                             <CardActions>
                                 <Button size="large" color="primary" variant="contained" fullWidth={true} onClick={() => { generarEntrada() }}>
                                     Generar Ticket

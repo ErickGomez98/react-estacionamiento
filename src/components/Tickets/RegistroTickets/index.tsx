@@ -40,7 +40,7 @@ const RegistroTickets: React.FC<Props> = (props) => {
                             {row.id}
                         </TableCell>
                         <TableCell align="right">{row.fechaEntrada.toLocaleString('es-MX')}</TableCell>
-                        <TableCell align="right">{row.fechaEntrada.getTime() === row.fechaSalida.getDate() ? row.fechaSalida.toLocaleString('es-MX') : '~'}</TableCell>
+                        <TableCell align="right">{row.fechaEntrada.getTime() === row.fechaSalida.getTime() ? '~' : row.fechaSalida.toLocaleString('es-MX')}</TableCell>
                         <TableCell align="right">{row.totalPagar === 0 ? '~' : '$ ' + row.totalPagar}</TableCell>
                     </TableRow>
                 ))}

@@ -33,7 +33,22 @@ export const TicketsReducer = (state = initialTicketsState, action: ITicketsActi
             } else {
                 return { ...state, ...payload }
             }
+            break;
         case 'SalidaTicket':
+            if (payload.newItem) {
+                return {
+                    ...state, listaTickets: state.listaTickets.map(item => {
+                        if (payload.newItem) {
+                            if (item.id === payload.newItem.id) {
+                                return payload.newItem;
+                            }
+                        }
+                        return item;
+                    })
+                }
+            } else {
+                return { ...state, ...payload }
+            }
         default:
             return state;
     }

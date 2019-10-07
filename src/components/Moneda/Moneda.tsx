@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type DenominacionMoneda = 2 | 5 | 10 | 20;
+export type DenominacionMoneda = 1 | 2 | 5 | 10 | 20;
 interface Props {
     denominacion: DenominacionMoneda,
     clickEv: () => void,

@@ -1,4 +1,4 @@
-export interface Ticket {
+export interface ITicket {
     id: number,
     fechaEntrada: Date,
     fechaSalida: Date,
@@ -13,9 +13,9 @@ export interface IAllState {
         moneda20: boolean,
     },
     Tickets: {
-        listaTickets: Ticket[],
+        listaTickets: ITicket[],
         precioPorFraccion: number,
         folioTicket: number,
-        newItem: Ticket
+        newItem: ITicket
     }
 }
